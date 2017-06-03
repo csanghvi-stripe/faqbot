@@ -14,19 +14,17 @@ except ImportError:
 
 #bot name
 # BOT_NAME = 'demobot'
-BOT_NAME = "helloslackapp"
+BOT_NAME = "faqbot"
 
 #get bot id
-#BOT_ID = os.environ.get('SLACK_BOT_ID')
-BOT_ID="U5JSP3XL4"
+BOT_ID = os.environ.get('SLACK_BOT_ID')
 
 #get slack bot token
-#SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
-SLACK_BOT_TOKEN = "xoxb-188907133684-G1lO4GG113dp4SAWuNXHRSpr"
+SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 
 #get aiapi access token
-#APIAI_ACCESS_TOKEN = os.environ.get('APIAI_DEVELOPER_ACCESS_TOKEN')
-APIAI_ACCESS_TOKEN = "696bcad329ed4327981a0ba711b4f663"
+APIAI_ACCESS_TOKEN = os.environ.get('APIAI_DEVELOPER_ACCESS_TOKEN')
+#APIAI_ACCESS_TOKEN = "696bcad329ed4327981a0ba711b4f663"
 
 #set slack client
 slack_client = SlackClient(SLACK_BOT_TOKEN)
@@ -66,12 +64,12 @@ def handle_command(command, channel):
 	#ai_response = json.loads(r)['result']
 	print (ai_response)
 	print ('first line \n')
-	if 'smalltalk' in ai_response['action']: 
+	if 'smalltalk' in ai_response['action']:
 		print (ai_response['fulfillment']['speech'])
 		print ('second line \n')
 		response = ai_response['fulfillment']['speech']
 	elif 'intentName' in ai_response['metadata'] and ai_response['metadata']['intentName'] == 'bot.define':
-		response = ai_response['fulfillment']['messages'][0]['speech'] 
+		response = ai_response['fulfillment']['messages'][0]['speech']
 		print (response)
 		attachments = [{
                         "text": "Does this help?",
@@ -168,5 +166,3 @@ if __name__ == '__main__':
 			time.sleep(READ_WEBSOCKET_DELAY)
 	else:
 		print(BOT_NAME+ " not connected!")
-
-
